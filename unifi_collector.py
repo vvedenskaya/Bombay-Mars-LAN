@@ -1,105 +1,128 @@
 import requests
 import json
 import urllib3
+import os
 
 # Disable SSL warnings for self-signed certificates (common for local controllers)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class UniFiCollector:
-    def __init__(self, base_url, username, password, site='default'):
+    def __init__(self, base_url, api_key, site='default'):
         self.base_url = base_url.rstrip('/')
-        self.username = username
-        self.password = password
+        self.api_key = api_key
         self.site = site
         self.session = requests.Session()
-        self.is_unifi_os = False # Will be determined automatically
-
-    def login(self):
-        """Authenticate with the controller"""
-        # Try path for UniFi OS (UDM, Cloud Key Gen2)
-        login_url = f"{self.base_url}/api/auth/login"
-        payload = {
-            'username': self.username,
-            'password': self.password,
-            'remember': True
-        }
-        
-        try:
-            response = self.session.post(login_url, json=payload, verify=False, timeout=10)
-            if response.status_code == 200:
-                print("Login successful (UniFi OS)")
-                self.is_unifi_os = True
-                return True
-            
-            # If failed, try legacy path (Self-hosted Controller)
-            login_url = f"{self.base_url}/api/login"
-            response = self.session.post(login_url, json=payload, verify=False, timeout=10)
-            if response.status_code == 200:
-                print("Login successful (Legacy Controller)")
-                self.is_unifi_os = False
-                return True
-            
-            print(f"Login failed: {response.status_code}")
-            return False
-        except Exception as e:
-            print(f"Error during login attempt: {e}")
-            return False
+        # Set the API key in headers for all requests
+        self.session.headers.update({
+            'X-API-KEY': self.api_key,
+            'Accept': 'application/json'
+        })
 
     def get_devices(self):
-        """Get list of all devices (APs, Switches, etc.)"""
-        endpoint = f"/api/s/{self.site}/stat/device"
-        if self.is_unifi_os:
-            url = f"{self.base_url}/proxy/network{endpoint}"
-        else:
-            url = f"{self.base_url}{endpoint}"
+        """Get list of all devices (APs, Switches, etc.) from UniFi"""
+        # API keys in newer UniFi versions typically use the proxy path or direct API
+        # We'll try the standard stat/device endpoint
+        endpoint = f"/proxy/network/api/s/{self.site}/stat/device"
+        url = f"{self.base_url}{endpoint}"
 
         try:
             response = self.session.get(url, verify=False, timeout=10)
             if response.status_code == 200:
                 return response.json().get('data', [])
-            else:
-                print(f"Error fetching data: {response.status_code}")
-                return []
+            
+            # If 404, try legacy path
+            if response.status_code == 404:
+                url = f"{self.base_url}/api/s/{self.site}/stat/device"
+                response = self.session.get(url, verify=False, timeout=10)
+                if response.status_code == 200:
+                    return response.json().get('data', [])
+
+            print(f"UniFi Error: {response.status_code} - {response.text}")
+            return []
         except Exception as e:
-            print(f"Error requesting devices: {e}")
+            print(f"Error requesting UniFi devices: {e}")
             return []
 
-    def format_for_map(self, devices):
-        """Format data for Godot"""
-        map_data = []
-        for dev in devices:
-            map_data.append({
-                'name': dev.get('name', dev.get('mac')),
-                'type': dev.get('type'),
-                'model': dev.get('model'),
-                'ip': dev.get('ip'),
-                'mac': dev.get('mac'),
-                'state': dev.get('state'), # 1 = online, 0 = offline
-                'clients': dev.get('num_sta', 0),
-                'satisfaction': dev.get('satisfaction', 0),
-                # If x/y coordinates are set in UniFi Floorplan, they will be here:
-                'x': dev.get('x'),
-                'y': dev.get('y')
-            })
-        return map_data
+class UISPCollector:
+    def __init__(self, base_url, api_key):
+        self.base_url = base_url.rstrip('/')
+        self.api_key = api_key
+        self.session = requests.Session()
+        # UISP uses x-auth-token for API keys
+        self.session.headers.update({
+            'x-auth-token': self.api_key,
+            'Accept': 'application/json'
+        })
+
+    def get_devices(self):
+        """Get list of all devices from UISP"""
+        url = f"{self.base_url}/api/v1.0/devices"
+        try:
+            response = self.session.get(url, verify=False, timeout=10)
+            if response.status_code == 200:
+                return response.json()
+            print(f"UISP Error: {response.status_code} - {response.text}")
+            return []
+        except Exception as e:
+            print(f"Error requesting UISP devices: {e}")
+            return []
+
+def format_data_for_touchdesigner(unifi_devs, uisp_devs):
+    """Combine and format data for TouchDesigner"""
+    combined_data = {
+        "unifi": [],
+        "uisp": []
+    }
+
+    for dev in unifi_devs:
+        combined_data["unifi"].append({
+            'name': dev.get('name', dev.get('mac')),
+            'type': dev.get('type'),
+            'model': dev.get('model'),
+            'state': dev.get('state'), # 1 = online, 0 = offline
+            'clients': dev.get('num_sta', 0),
+            'x': dev.get('x'),
+            'y': dev.get('y'),
+            'source': 'unifi'
+        })
+
+    for dev in uisp_devs:
+        id_info = dev.get('identification', {})
+        attr = dev.get('attributes', {})
+        combined_data["uisp"].append({
+            'name': id_info.get('name'),
+            'model': id_info.get('model'),
+            'type': id_info.get('type'),
+            'state': dev.get('overview', {}).get('status'), # online/offline/etc
+            'lat': attr.get('latitude'),
+            'lon': attr.get('longitude'),
+            'source': 'uisp'
+        })
+
+    return combined_data
 
 if __name__ == "__main__":
-    # REPLACE THESE WITH YOUR ACTUAL CREDENTIALS
-    UNIFI_URL = "https://192.168.1.1" # Your controller IP
-    USERNAME = "admin"
-    PASSWORD = "your_password"
+    # Load from environment variables or hardcode for now
+    # It's recommended to use a .env file
+    UNIFI_URL = os.getenv("UNIFI_URL", "https://your-unifi-ip")
+    UNIFI_KEY = os.getenv("UNIFI_KEY", "your-unifi-api-key")
     
-    collector = UniFiCollector(UNIFI_URL, USERNAME, PASSWORD)
+    UISP_URL = os.getenv("UISP_URL", "https://your-uisp-ip")
+    UISP_KEY = os.getenv("UISP_KEY", "your-uisp-api-key")
+
+    print("Connecting to UniFi...")
+    unifi_collector = UniFiCollector(UNIFI_URL, UNIFI_KEY)
+    unifi_devices = unifi_collector.get_devices()
+
+    print("Connecting to UISP...")
+    uisp_collector = UISPCollector(UISP_URL, UISP_KEY)
+    uisp_devices = uisp_collector.get_devices()
+
+    # Process and Save
+    final_data = format_data_for_touchdesigner(unifi_devices, uisp_devices)
     
-    if collector.login():
-        devices = collector.get_devices()
-        formatted_data = collector.format_for_map(devices)
-        
-        # Save as JSON for Touch Des
-        with open('unifi_data.json', 'w', encoding='utf-8') as f:
-            json.dump(formatted_data, f, indent=4, ensure_ascii=False)
-            
-        print(f"Devices collected: {len(formatted_data)}")
-        print("Data saved to unifi_data.json")
-    else:
-        print("Could not connect to UniFi.")
+    with open('network_data.json', 'w', encoding='utf-8') as f:
+        json.dump(final_data, f, indent=4, ensure_ascii=False)
+
+    print(f"Done! Collected {len(unifi_devices)} UniFi and {len(uisp_devices)} UISP devices.")
+    print("Data saved to network_data.json")
