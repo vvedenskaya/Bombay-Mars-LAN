@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+build/
+dist/
+
+# Project Specific Data
+unifi_data.json
+*.log
+
+# Sensitive Info
+.env
+.secrets
+
+# OS Specific
+.DS_Store
+Thumbs.db
