@@ -2,9 +2,10 @@ import requests
 import json
 import urllib3
 import os
+from dotenv import load_dotenv
 
-# Disable SSL warnings for self-signed certificates (common for local controllers)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+load_dotenv()
 
 class UniFiCollector:
     def __init__(self, base_url, api_key, site='default'):
@@ -12,117 +13,117 @@ class UniFiCollector:
         self.api_key = api_key
         self.site = site
         self.session = requests.Session()
-        # Set the API key in headers for all requests
         self.session.headers.update({
-            'X-API-KEY': self.api_key,
-            'Accept': 'application/json'
+            'x-api-key': self.api_key,
+            'Accept': 'application/json',
+            'User-Agent': 'Mozilla/5.0'
         })
 
     def get_devices(self):
-        """Get list of all devices (APs, Switches, etc.) from UniFi"""
-        # API keys in newer UniFi versions typically use the proxy path or direct API
-        # We'll try the standard stat/device endpoint
-        endpoint = f"/proxy/network/api/s/{self.site}/stat/device"
-        url = f"{self.base_url}{endpoint}"
-
-        try:
-            response = self.session.get(url, verify=False, timeout=10)
-            if response.status_code == 200:
-                return response.json().get('data', [])
-            
-            # If 404, try legacy path
-            if response.status_code == 404:
-                url = f"{self.base_url}/api/s/{self.site}/stat/device"
-                response = self.session.get(url, verify=False, timeout=10)
+        # Added the 'integration/v1' paths which are common for hosted controllers
+        paths = [
+            f"/proxy/network/integration/v1/sites/{self.site}/devices",
+            f"/proxy/network/api/s/{self.site}/stat/device",
+            f"/api/s/{self.site}/stat/device"
+        ]
+        
+        for path in paths:
+            url = f"{self.base_url}{path}"
+            try:
+                print(f"Trying UniFi path: {url}")
+                response = self.session.get(url, verify=False, timeout=15)
+                
                 if response.status_code == 200:
-                    return response.json().get('data', [])
-
-            print(f"UniFi Error: {response.status_code} - {response.text}")
-            return []
-        except Exception as e:
-            print(f"Error requesting UniFi devices: {e}")
-            return []
+                    try:
+                        res_json = response.json()
+                        # 'integration' API usually returns data directly or in a 'data' key
+                        if isinstance(res_json, list): return res_json
+                        return res_json.get('data', [])
+                    except:
+                        continue
+                else:
+                    print(f"  Result: {response.status_code}")
+            except Exception as e:
+                print(f"  Error on {path}: {e}")
+        return []
 
 class UISPCollector:
     def __init__(self, base_url, api_key):
         self.base_url = base_url.rstrip('/')
         self.api_key = api_key
         self.session = requests.Session()
-        # UISP uses x-auth-token for API keys
         self.session.headers.update({
             'x-auth-token': self.api_key,
             'Accept': 'application/json'
         })
 
     def get_devices(self):
-        """Get list of all devices from UISP"""
-        url = f"{self.base_url}/api/v1.0/devices"
+        # We know v2.1 works for you!
+        url = f"{self.base_url}/nms/api/v2.1/devices"
         try:
-            response = self.session.get(url, verify=False, timeout=10)
+            print(f"Requesting UISP devices from: {url}")
+            response = self.session.get(url, verify=False, timeout=15)
             if response.status_code == 200:
                 return response.json()
-            print(f"UISP Error: {response.status_code} - {response.text}")
+            print(f"UISP Error: {response.status_code}")
             return []
         except Exception as e:
-            print(f"Error requesting UISP devices: {e}")
+            print(f"Error requesting UISP: {e}")
             return []
 
 def format_data_for_touchdesigner(unifi_devs, uisp_devs):
-    """Combine and format data for TouchDesigner"""
-    combined_data = {
-        "unifi": [],
-        "uisp": []
-    }
+    combined_data = {"unifi": [], "uisp": []}
+    
+    # Process UniFi
+    if isinstance(unifi_devs, list):
+        for dev in unifi_devs:
+            combined_data["unifi"].append({
+                'name': dev.get('name', dev.get('mac')),
+                'type': dev.get('type'),
+                'model': dev.get('model'),
+                'state': dev.get('state', 'online'), 
+                'clients': dev.get('num_sta', 0),
+                'x': dev.get('x'),
+                'y': dev.get('y')
+            })
 
-    for dev in unifi_devs:
-        combined_data["unifi"].append({
-            'name': dev.get('name', dev.get('mac')),
-            'type': dev.get('type'),
-            'model': dev.get('model'),
-            'state': dev.get('state'), # 1 = online, 0 = offline
-            'clients': dev.get('num_sta', 0),
-            'x': dev.get('x'),
-            'y': dev.get('y'),
-            'source': 'unifi'
-        })
-
-    for dev in uisp_devs:
-        id_info = dev.get('identification', {})
-        attr = dev.get('attributes', {})
-        combined_data["uisp"].append({
-            'name': id_info.get('name'),
-            'model': id_info.get('model'),
-            'type': id_info.get('type'),
-            'state': dev.get('overview', {}).get('status'), # online/offline/etc
-            'lat': attr.get('latitude'),
-            'lon': attr.get('longitude'),
-            'source': 'uisp'
-        })
-
+    # Process UISP
+    if isinstance(uisp_devs, list):
+        for dev in uisp_devs:
+            id_info = dev.get('identification', {})
+            overview = dev.get('overview', {})
+            combined_data["uisp"].append({
+                'name': id_info.get('name'),
+                'model': id_info.get('model'),
+                'type': id_info.get('type'),
+                'state': overview.get('status'),
+                'lat': dev.get('attributes', {}).get('latitude'),
+                'lon': dev.get('attributes', {}).get('longitude')
+            })
     return combined_data
 
 if __name__ == "__main__":
-    # Load from environment variables or hardcode for now
-    # It's recommended to use a .env file
-    UNIFI_URL = os.getenv("UNIFI_URL", "https://your-unifi-ip")
-    UNIFI_KEY = os.getenv("UNIFI_KEY", "your-unifi-api-key")
-    
-    UISP_URL = os.getenv("UISP_URL", "https://your-uisp-ip")
-    UISP_KEY = os.getenv("UISP_KEY", "your-uisp-api-key")
+    UNIFI_URL = os.getenv("UNIFI_URL")
+    UNIFI_KEY = os.getenv("UNIFI_KEY")
+    UNIFI_SITE = os.getenv("UNIFI_SITE", "default")
+    UISP_URL = os.getenv("UISP_URL")
+    UISP_KEY = os.getenv("UISP_KEY")
 
-    print("Connecting to UniFi...")
-    unifi_collector = UniFiCollector(UNIFI_URL, UNIFI_KEY)
-    unifi_devices = unifi_collector.get_devices()
+    unifi_devices = []
+    if UNIFI_URL and UNIFI_KEY:
+        unifi_collector = UniFiCollector(UNIFI_URL, UNIFI_KEY, site=UNIFI_SITE)
+        unifi_devices = unifi_collector.get_devices()
 
-    print("Connecting to UISP...")
-    uisp_collector = UISPCollector(UISP_URL, UISP_KEY)
-    uisp_devices = uisp_collector.get_devices()
+    uisp_devices = []
+    if UISP_URL and UISP_KEY:
+        uisp_collector = UISPCollector(UISP_URL, UISP_KEY)
+        uisp_devices = uisp_collector.get_devices()
 
-    # Process and Save
     final_data = format_data_for_touchdesigner(unifi_devices, uisp_devices)
-    
     with open('network_data.json', 'w', encoding='utf-8') as f:
         json.dump(final_data, f, indent=4, ensure_ascii=False)
 
-    print(f"Done! Collected {len(unifi_devices)} UniFi and {len(uisp_devices)} UISP devices.")
+    print(f"\n--- Final Results ---")
+    print(f"UniFi: {len(unifi_devices)} devices")
+    print(f"UISP: {len(uisp_devices)} devices")
     print("Data saved to network_data.json")

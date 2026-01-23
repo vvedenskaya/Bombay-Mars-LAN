@@ -1,0 +1,777 @@
+{
+    "unifi": [
+        {
+            "name": "AP - Chiba North - B0:22 - AC LR",
+            "type": "uap",
+            "model": "U7LR",
+            "state": 1,
+            "clients": 7,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - Freeside - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - 1B:EE - US 8 60W",
+            "type": "usw",
+            "model": "US8P60",
+            "state": 1,
+            "clients": 2,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - Freeside - 7811 - US 8 PoE 150W",
+            "type": "usw",
+            "model": "US8P150",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - A9:07 - US 8 60W",
+            "type": "usw",
+            "model": "US8P60",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - 7813 - Chiba DJ - US 8 PoE 150W",
+            "type": "usw",
+            "model": "US8P150",
+            "state": 1,
+            "clients": 5,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - 19d3 - Chiba - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 1,
+            "clients": 5,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - Chiba DJ - B6:0F - AC Pro",
+            "type": "uap",
+            "model": "U7PG2",
+            "state": 1,
+            "clients": 3,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - D7:6B - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - Tool Ceiling - DD:EF - AC Pro",
+            "type": "uap",
+            "model": "U7PG2",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - 7827 - Chiba Network Closet - US 8 PoE 150W",
+            "type": "usw",
+            "model": "US8P150",
+            "state": 1,
+            "clients": 2,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - Chiba AI Trailers - U7 Outdoor",
+            "type": "uap",
+            "model": "UKPW",
+            "state": 1,
+            "clients": 17,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - 8C:EA - US 8 60W",
+            "type": "usw",
+            "model": "US8P60",
+            "state": 1,
+            "clients": 3,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - Chiba Kitchen - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - Chiba Media Cave - Nano HD",
+            "type": "uap",
+            "model": "U7NHD",
+            "state": 1,
+            "clients": 11,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - 7823 - Chiba Media Cave - US 8 PoE 150W",
+            "type": "usw",
+            "model": "US8P150",
+            "state": 1,
+            "clients": 3,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - 5F:33 - AC-Lite",
+            "type": "uap",
+            "model": "U7LT",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - D1:22 - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - Chiba 1st Floor - DD:0C - AC Pro",
+            "type": "uap",
+            "model": "U7PG2",
+            "state": 1,
+            "clients": 12,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - Tool - 7802 - US 8 PoE 150W",
+            "type": "usw",
+            "model": "US8P150",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - D9:7F - AC Pro",
+            "type": "uap",
+            "model": "U7PG2",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - OG - U7 Outdoor",
+            "type": "uap",
+            "model": "UKPW",
+            "state": 1,
+            "clients": 9,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - Tool Box = AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - 7819 - US 8 PoE 150W",
+            "type": "usw",
+            "model": "US8P150",
+            "state": 1,
+            "clients": 1,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - 1F:1D - AC LR",
+            "type": "uap",
+            "model": "U7LR",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - OG - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 1,
+            "clients": 18,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - A2:11 - US 8 60W",
+            "type": "usw",
+            "model": "US8P60",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - 52:7B - AC-Lite",
+            "type": "uap",
+            "model": "U7LT",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "Switch - 91:B8 - US 8 60W",
+            "type": "usw",
+            "model": "US8P60",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        },
+        {
+            "name": "AP - AC Mesh",
+            "type": "uap",
+            "model": "U7MSH",
+            "state": 0,
+            "clients": 0,
+            "x": null,
+            "y": null
+        }
+    ],
+    "uisp": [
+        {
+            "name": "neocity-rf-f4cc-uranus",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-1121-juicy",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-9961-muzikmuzeum",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "chowtower-rf-sector-se",
+            "model": "LAP-GPS",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "tao-rf-sector",
+            "model": "LAP-120",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-20d2-kona",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-32c2-joe",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-90d7-chowmart",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-9a92-limbolounge",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "Station - NanoBeam M5 16",
+            "model": "N5B-16",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "mars-rf-c7:72-freeside",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "venus-rf-sector-e",
+            "model": "LAP-120",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-68ca-kim",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "tao-rf-st-3:ba",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "Dada",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-53c2-mercury",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "AP - NanoBeam M5 16",
+            "model": "N5B-16",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-98ef",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-917d-communitycenter",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-932a-institute",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "tao-rf-st-0:34",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-seva",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-39b8-dragonflyhouse",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "Palazzo",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "Tile House",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "chowtower-rf-sector-sw",
+            "model": "LAP-GPS",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "venus-rf-ptp-chowtower-05",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-a1fb-zigzag",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-0763-sharonda",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "mars-rf-sector-n",
+            "model": "LAP-120",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-1a25-salthouse",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-2e6d-sunflowerlabs",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-25d4-raphalots",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "venus-rf-ptp-mars-60",
+            "model": "GBE-LR",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-1015-richard",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-ce67",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "mars-rf-262b",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "venus-rf-sector-s",
+            "model": "LAP-120",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "mars-rf-9e:5d-og",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-06e9-compoundz",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-7de1-wormhole",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-19b8-electriclounge",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "tao-rf-library-8:45",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "Kim's Rental",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "2115 - Vlad ",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-kamartaj-05",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "Saturn",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-aa67-skullpony",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-9e62-bbac",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "mars-rf-tool-983a",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-a4b2-hunky",
+            "model": "Loco5AC",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "chowtower-rf-sector-n",
+            "model": "LAP-GPS",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "mars-rf-ptp-venus-60",
+            "model": "GBE-LR",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "mars-rf-sector-e",
+            "model": "LAP-120",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "Pirates",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "disconnected",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "neocity-rf-e6c2-ivan",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        },
+        {
+            "name": "chowtower-rf-ptp-venus-05",
+            "model": "LBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": null,
+            "lon": null
+        }
+    ]
+}
