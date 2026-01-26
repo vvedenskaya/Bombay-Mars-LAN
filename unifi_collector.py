@@ -25,7 +25,6 @@ class UniFiCollector:
             f"/proxy/network/api/s/{self.site}/stat/device",
             f"/api/s/{self.site}/stat/device"
         ]
-        
         for path in paths:
             url = f"{self.base_url}{path}"
             try:
@@ -37,10 +36,7 @@ class UniFiCollector:
                         if isinstance(res_json, list): return res_json
                         return res_json.get('data', [])
                     except: continue
-                else:
-                    print(f"  Result: {response.status_code}")
-            except Exception as e:
-                print(f"  Error on {path}: {e}")
+            except: continue
         return []
 
 class UISPCollector:
@@ -56,69 +52,60 @@ class UISPCollector:
     def get_devices(self):
         url = f"{self.base_url}/nms/api/v2.1/devices"
         try:
-            print(f"Requesting UISP devices from: {url}")
             response = self.session.get(url, verify=False, timeout=15)
-            if response.status_code == 200:
-                return response.json()
+            if response.status_code == 200: return response.json()
             return []
-        except Exception as e:
-            print(f"Error requesting UISP devices: {e}")
-            return []
+        except: return []
 
     def get_sites(self):
         url = f"{self.base_url}/nms/api/v2.1/sites"
         try:
-            print(f"Requesting UISP sites from: {url}")
             response = self.session.get(url, verify=False, timeout=15)
-            if response.status_code == 200:
-                return response.json()
+            if response.status_code == 200: return response.json()
             return []
-        except Exception as e:
-            print(f"Error requesting UISP sites: {e}")
-            return []
+        except: return []
 
-def download_google_map(lat_min, lat_max, lon_min, lon_max, map_type='roadmap'):
-    """
-    Downloads a static map image from Google Maps Static API.
-    map_type can be: roadmap, satellite, terrain, hybrid
-    """
+def download_google_map(lat_min, lat_max, lon_min, lon_max, map_type='roadmap', grid_size=4):
+    """Downloads static map images in a grid (e.g., 4x4)."""
     api_key = os.getenv("GOOGLE_MAPS_KEY")
     if not api_key:
-        print(f"Skipping {map_type} map: GOOGLE_MAPS_KEY not found in .env")
+        print(f"Skipping {map_type}: GOOGLE_MAPS_KEY not found")
         return None
 
-    center_lat = (lat_min + lat_max) / 2
-    center_lon = (lon_min + lon_max) / 2
-    
-    # Calculate span for Google API (delta lat/lon)
-    # Google Static Maps also supports paths/polygons to define a box,
-    # but for a square map, we use the center and a zoom level or markers.
-    # To ensure the box is covered, we'll use the 'visible' parameter.
-    
-    url = "https://maps.googleapis.com/maps/api/staticmap"
-    params = {
-        "center": f"{center_lat},{center_lon}",
-        "size": "640x640", # Max size for free tier
-        "scale": "2",     # Get 1280x1280 (High DPI)
-        "maptype": map_type,
-        "visible": f"{lat_min},{lon_min}|{lat_max},{lon_max}",
-        "key": api_key
-    }
+    lat_step = (lat_max - lat_min) / grid_size
+    lon_step = (lon_max - lon_min) / grid_size
 
-    try:
-        print(f"Downloading Google {map_type} map...")
-        response = requests.get(url, params=params, timeout=20)
-        if response.status_code == 200:
-            filename = f"map_{map_type}.png"
-            with open(filename, 'wb') as f:
-                f.write(response.content)
-            print(f"Saved {filename}")
-            return filename
-        else:
-            print(f"Google API Error: {response.status_code} - {response.text}")
-    except Exception as e:
-        print(f"Error downloading Google map: {e}")
-    return None
+    print(f"Downloading {grid_size}x{grid_size} grid for {map_type}...")
+
+    for row in range(grid_size):
+        for col in range(grid_size):
+            t_lat_max = lat_max - row * lat_step
+            t_lat_min = lat_max - (row + 1) * lat_step
+            t_lon_min = lon_min + col * lon_step
+            t_lon_max = lon_min + (col + 1) * lon_step
+            
+            center_lat = (t_lat_min + t_lat_max) / 2
+            center_lon = (t_lon_min + t_lon_max) / 2
+            
+            params = {
+                "center": f"{center_lat},{center_lon}",
+                "size": "640x640",
+                "scale": "2",
+                "maptype": map_type,
+                "visible": f"{t_lat_min},{t_lon_min}|{t_lat_max},{t_lon_max}",
+                "key": api_key
+            }
+
+            try:
+                filename = f"map_{map_type}_{row}_{col}.png"
+                response = requests.get("https://maps.googleapis.com/maps/api/staticmap", params=params, timeout=20)
+                if response.status_code == 200:
+                    with open(filename, 'wb') as f:
+                        f.write(response.content)
+                else:
+                    print(f"  Error {response.status_code} for {filename}")
+            except Exception as e:
+                print(f"  Error downloading {filename}: {e}")
 
 def format_data_for_touchdesigner(unifi_devs, uisp_devs, uisp_sites, get_map=False):
     combined_data = {"unifi": [], "uisp": [], "map_metadata": {}}
@@ -127,104 +114,85 @@ def format_data_for_touchdesigner(unifi_devs, uisp_devs, uisp_sites, get_map=Fal
     if isinstance(uisp_sites, list):
         for site in uisp_sites:
             s_id = site.get('id')
-            location = site.get('location', {})
-            if s_id:
-                site_map[s_id] = {
-                    'lat': location.get('latitude'),
-                    'lon': location.get('longitude')
-                }
+            loc = site.get('location') or {}
+            if s_id: site_map[s_id] = {'lat': loc.get('latitude'), 'lon': loc.get('longitude')}
 
-    # UniFi & UISP Processing (same as before)
     lats, lons = [], []
-    
-    # UniFi
-    if isinstance(unifi_devs, list):
-        for dev in unifi_devs:
-            combined_data["unifi"].append({
-                'name': dev.get('name', dev.get('mac')),
-                'type': dev.get('type'),
-                'model': dev.get('model'),
-                'state': dev.get('state', 'online'), 
-                'clients': dev.get('num_sta', 0),
-                'x': dev.get('x'), 'y': dev.get('y')
-            })
-
-    # UISP
+    temp_uisp = []
     if isinstance(uisp_devs, list):
         for dev in uisp_devs:
             id_info = dev.get('identification') or {}
-            overview = dev.get('overview') or {}
             attr = dev.get('attributes') or {}
             loc = dev.get('location') or {}
             s_id = id_info.get('siteId')
-            
             site_coords = site_map.get(s_id, {})
             lat = attr.get('latitude') or loc.get('latitude') or site_coords.get('lat')
             lon = attr.get('longitude') or loc.get('longitude') or site_coords.get('lon')
-            
             if lat and lon:
-                lats.append(float(lat))
-                lons.append(float(lon))
-            
-            combined_data["uisp"].append({
-                'name': id_info.get('name'),
-                'model': id_info.get('model'),
-                'type': id_info.get('type'),
-                'state': overview.get('status'),
-                'lat': lat, 'lon': lon
-            })
+                lat, lon = float(lat), float(lon)
+                if abs(lat) > 0.1: temp_uisp.append((lat, lon, dev))
 
-    # Google Maps Generation
+    if temp_uisp:
+        all_lats = sorted([x[0] for x in temp_uisp])
+        all_lons = sorted([x[1] for x in temp_uisp])
+        med_lat, med_lon = all_lats[len(all_lats)//2], all_lons[len(all_lons)//2]
+
+        # BALANCED FILTER: ~3km from center
+        for lat, lon, dev in temp_uisp:
+            if abs(lat - med_lat) < 0.03 and abs(lon - med_lon) < 0.03:
+                lats.append(lat); lons.append(lon)
+                id_info = dev.get('identification') or {}
+                combined_data["uisp"].append({
+                    'name': id_info.get('name'),
+                    'model': id_info.get('model'),
+                    'type': id_info.get('type'),
+                    'state': dev.get('overview', {}).get('status'),
+                    'lat': lat, 'lon': lon
+                })
+
     if get_map and lats and lons:
         lat_min, lat_max = min(lats), max(lats)
         lon_min, lon_max = min(lons), max(lons)
         
-        # Padding
-        lat_pad = (lat_max - lat_min) * 0.2 or 0.002
-        lon_pad = (lon_max - lon_min) * 0.2 or 0.002
+        # 5% padding
+        lat_pad = (lat_max - lat_min) * 0.05 or 0.0005
+        lon_pad = (lon_max - lon_min) * 0.05 or 0.0005
         lat_min -= lat_pad; lat_max += lat_pad
         lon_min -= lon_pad; lon_max += lon_pad
 
         combined_data["map_metadata"] = {
             "lat_min": lat_min, "lat_max": lat_max,
             "lon_min": lon_min, "lon_max": lon_max,
-            "center": [(lat_min+lat_max)/2, (lon_min+lon_max)/2]
+            "grid": "4x4"
         }
         
-        # Download maps using Google API
-        download_google_map(lat_min, lat_max, lon_min, lon_max, 'roadmap')
-        download_google_map(lat_min, lat_max, lon_min, lon_max, 'satellite')
-        download_google_map(lat_min, lat_max, lon_min, lon_max, 'terrain')
+        # Download ULTRA-HIGH RES (4x4 grid)
+        # Note: roadmap and terrain might not need 4x4, but satellite definitely does
+        download_google_map(lat_min, lat_max, lon_min, lon_max, 'satellite', grid_size=4)
+        download_google_map(lat_min, lat_max, lon_min, lon_max, 'roadmap', grid_size=2) # 2x2 is enough for maps
 
     return combined_data
 
 if __name__ == "__main__":
-    UNIFI_URL = os.getenv("UNIFI_URL")
-    UNIFI_KEY = os.getenv("UNIFI_KEY")
+    UNIFI_URL, UNIFI_KEY = os.getenv("UNIFI_URL"), os.getenv("UNIFI_KEY")
     UNIFI_SITE = os.getenv("UNIFI_SITE", "default")
-    UISP_URL = os.getenv("UISP_URL")
-    UISP_KEY = os.getenv("UISP_KEY")
+    UISP_URL, UISP_KEY = os.getenv("UISP_URL"), os.getenv("UISP_KEY")
     GET_MAP = os.getenv("GET_MAP", "False").lower() == "true"
 
     unifi_devices = []
     if UNIFI_URL and UNIFI_KEY:
-        unifi_collector = UniFiCollector(UNIFI_URL, UNIFI_KEY, site=UNIFI_SITE)
-        unifi_devices = unifi_collector.get_devices()
+        unifi_devices = UniFiCollector(UNIFI_URL, UNIFI_KEY, site=UNIFI_SITE).get_devices()
 
-    uisp_devices = []
-    uisp_sites = []
+    uisp_devices, uisp_sites = [], []
     if UISP_URL and UISP_KEY:
-        uisp_collector = UISPCollector(UISP_URL, UISP_KEY)
-        uisp_devices = uisp_collector.get_devices()
-        uisp_sites = uisp_collector.get_sites()
+        uisp_coll = UISPCollector(UISP_URL, UISP_KEY)
+        uisp_devices = uisp_coll.get_devices()
+        uisp_sites = uisp_coll.get_sites()
 
     final_data = format_data_for_touchdesigner(unifi_devices, uisp_devices, uisp_sites, get_map=GET_MAP)
     with open('network_data.json', 'w', encoding='utf-8') as f:
         json.dump(final_data, f, indent=4, ensure_ascii=False)
 
-    print(f"\n--- Final Results ---")
-    print(f"UniFi: {len(unifi_devices)} devices")
-    print(f"UISP: {len(uisp_devices)} devices")
-    if GET_MAP:
-        print("Google Maps generation enabled. Check map_*.png files.")
-    print("Data saved to network_data.json")
+    print(f"\n--- ULTRA HIGH-RES RESULTS ---")
+    print(f"UniFi: {len(unifi_devices)} | UISP: {len(final_data['uisp'])}")
+    if GET_MAP: print("4x4 Satellite grid downloaded (16 files). Check your folder!")

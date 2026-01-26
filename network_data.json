@@ -1,336 +1,10 @@
 {
-    "unifi": [
-        {
-            "name": "AP - Chiba North - B0:22 - AC LR",
-            "type": "uap",
-            "model": "U7LR",
-            "state": 1,
-            "clients": 12,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Freeside - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - 1B:EE - US 8 60W",
-            "type": "usw",
-            "model": "US8P60",
-            "state": 1,
-            "clients": 2,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - A9:07 - US 8 60W",
-            "type": "usw",
-            "model": "US8P60",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - Freeside - 7811 - US 8 PoE 150W",
-            "type": "usw",
-            "model": "US8P150",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - 7813 - US 8 PoE 150W",
-            "type": "usw",
-            "model": "US8P150",
-            "state": 1,
-            "clients": 1,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Chiba DJ - B6:0F - AC Pro",
-            "type": "uap",
-            "model": "U7PG2",
-            "state": 1,
-            "clients": 8,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - 19d3 - Chiba - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 1,
-            "clients": 7,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - D7:6B - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Tool Ceiling - DD:EF - AC Pro",
-            "type": "uap",
-            "model": "U7PG2",
-            "state": 1,
-            "clients": 1,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - 7827 - Chiba Network Closet - US 8 PoE 150W",
-            "type": "usw",
-            "model": "US8P150",
-            "state": 1,
-            "clients": 3,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Chiba AI Trailers - U7 Outdoor",
-            "type": "uap",
-            "model": "UKPW",
-            "state": 1,
-            "clients": 10,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - 8C:EA - US 8 60W",
-            "type": "usw",
-            "model": "US8P60",
-            "state": 1,
-            "clients": 3,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Community Lab - U7 Outdoor",
-            "type": "uap",
-            "model": "UKPW",
-            "state": 1,
-            "clients": 3,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Chiba Kitchen - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Chiba Media Cave - Nano HD",
-            "type": "uap",
-            "model": "U7NHD",
-            "state": 1,
-            "clients": 5,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - 7823 - Chiba Media Cave - US 8 PoE 150W",
-            "type": "usw",
-            "model": "US8P150",
-            "state": 1,
-            "clients": 4,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - 5F:33 - AC-Lite",
-            "type": "uap",
-            "model": "U7LT",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - D1:22 - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Chiba 1st Floor - DD:0C - AC Pro",
-            "type": "uap",
-            "model": "U7PG2",
-            "state": 1,
-            "clients": 14,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - Tool - 7802 - US 8 PoE 150W",
-            "type": "usw",
-            "model": "US8P150",
-            "state": 1,
-            "clients": 1,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Community Lab - D9:7F - AC Pro",
-            "type": "uap",
-            "model": "U7PG2",
-            "state": 1,
-            "clients": 10,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - OG - U7 Outdoor",
-            "type": "uap",
-            "model": "UKPW",
-            "state": 1,
-            "clients": 9,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - Tool Box = AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 1,
-            "clients": 2,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - 7819 - US 8 PoE 150W",
-            "type": "usw",
-            "model": "US8P150",
-            "state": 1,
-            "clients": 1,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - 1F:1D - AC LR",
-            "type": "uap",
-            "model": "U7LR",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - OG - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 1,
-            "clients": 8,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - A2:11 - US 8 60W",
-            "type": "usw",
-            "model": "US8P60",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - 52:7B - AC-Lite",
-            "type": "uap",
-            "model": "U7LT",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "Switch - 91:B8 - Chiba DJ - US 8 60W",
-            "type": "usw",
-            "model": "US8P60",
-            "state": 1,
-            "clients": 2,
-            "x": null,
-            "y": null
-        },
-        {
-            "name": "AP - AC Mesh",
-            "type": "uap",
-            "model": "U7MSH",
-            "state": 0,
-            "clients": 0,
-            "x": null,
-            "y": null
-        }
-    ],
+    "unifi": [],
     "uisp": [
         {
             "name": "neocity-rf-f4cc-uranus",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.351207,
             "lon": -115.732572
@@ -339,7 +13,6 @@
             "name": "neocity-rf-1121-juicy",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.353549,
             "lon": -115.7315
@@ -348,7 +21,6 @@
             "name": "neocity-rf-9961-muzikmuzeum",
             "model": "NBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.351153,
             "lon": -115.733618
@@ -357,25 +29,14 @@
             "name": "chowtower-rf-sector-se",
             "model": "LAP-GPS",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
-            "lat": 33.352303,
-            "lon": -115.730972
-        },
-        {
-            "name": "tao-rf-sector",
-            "model": "LAP-120",
-            "type": "airMax",
-            "site_id": null,
-            "state": "active",
-            "lat": 34.094973,
-            "lon": -116.479931
+            "lat": 33.35229,
+            "lon": -115.73086
         },
         {
             "name": "neocity-rf-20d2-kona",
             "model": "NBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "disconnected",
             "lat": 33.353068,
             "lon": -115.728937
@@ -384,7 +45,6 @@
             "name": "neocity-rf-32c2-joe",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.350084,
             "lon": -115.733518
@@ -393,7 +53,6 @@
             "name": "neocity-rf-90d7-chowmart",
             "model": "NBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.352629,
             "lon": -115.733733
@@ -402,34 +61,14 @@
             "name": "neocity-rf-9a92-limbolounge",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.351641,
             "lon": -115.728816
         },
         {
-            "name": "Station - NanoBeam M5 16",
-            "model": "N5B-16",
-            "type": "airMax",
-            "site_id": null,
-            "state": "disconnected",
-            "lat": null,
-            "lon": null
-        },
-        {
-            "name": "mars-rf-c7:72-freeside",
-            "model": "NBE-5AC-Gen2",
-            "type": "airMax",
-            "site_id": null,
-            "state": "disconnected",
-            "lat": 33.362188,
-            "lon": -115.7128
-        },
-        {
             "name": "venus-rf-sector-e",
             "model": "LAP-120",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.354118,
             "lon": -115.729045
@@ -438,25 +77,14 @@
             "name": "neocity-rf-68ca-kim",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.351802,
             "lon": -115.726156
         },
         {
-            "name": "tao-rf-st-3:ba",
-            "model": "NBE-5AC-Gen2",
-            "type": "airMax",
-            "site_id": null,
-            "state": "active",
-            "lat": 34.095,
-            "lon": -116.4799
-        },
-        {
             "name": "Dada",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.352589,
             "lon": -115.728085
@@ -465,61 +93,30 @@
             "name": "neocity-rf-53c2-mercury",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.351221,
             "lon": -115.730496
         },
         {
-            "name": "AP - NanoBeam M5 16",
-            "model": "N5B-16",
-            "type": "airMax",
-            "site_id": null,
-            "state": "disconnected",
-            "lat": null,
-            "lon": null
-        },
-        {
             "name": "neocity-rf-98ef",
             "model": "NBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.352104,
             "lon": -115.72983
         },
         {
-            "name": "neocity-rf-917d-communitycenter",
-            "model": "LBE-5AC-Gen2",
-            "type": "airMax",
-            "site_id": null,
-            "state": "active",
-            "lat": null,
-            "lon": null
-        },
-        {
             "name": "neocity-rf-932a-institute",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.349186,
             "lon": -115.726604
         },
         {
-            "name": "tao-rf-st-0:34",
-            "model": "NBE-5AC-Gen2",
-            "type": "airMax",
-            "site_id": null,
-            "state": "active",
-            "lat": 34.095,
-            "lon": -116.4799
-        },
-        {
             "name": "neocity-rf-seva",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.350425,
             "lon": -115.729371
@@ -528,7 +125,6 @@
             "name": "neocity-rf-39b8-dragonflyhouse",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.34954,
             "lon": -115.732078
@@ -537,7 +133,6 @@
             "name": "Palazzo",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.354137,
             "lon": -115.729691
@@ -546,7 +141,6 @@
             "name": "Tile House",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.349745,
             "lon": -115.729829
@@ -555,16 +149,14 @@
             "name": "chowtower-rf-sector-sw",
             "model": "LAP-GPS",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
-            "lat": 33.35229,
-            "lon": -115.731034
+            "lat": 33.352214,
+            "lon": -115.731131
         },
         {
             "name": "venus-rf-ptp-chowtower-05",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.354059,
             "lon": -115.729223
@@ -573,7 +165,6 @@
             "name": "neocity-rf-a1fb-zigzag",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.349092,
             "lon": -115.725982
@@ -582,7 +173,6 @@
             "name": "neocity-rf-0763-sharonda",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "disconnected",
             "lat": 33.35206,
             "lon": -115.732672
@@ -591,7 +181,6 @@
             "name": "mars-rf-sector-n",
             "model": "LAP-120",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.3628,
             "lon": -115.7152
@@ -600,7 +189,6 @@
             "name": "neocity-rf-1a25-salthouse",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.350876,
             "lon": -115.726142
@@ -609,7 +197,6 @@
             "name": "neocity-rf-2e6d-sunflowerlabs",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.349681,
             "lon": -115.733025
@@ -618,7 +205,6 @@
             "name": "neocity-rf-25d4-raphalots",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "disconnected",
             "lat": 33.349088,
             "lon": -115.730342
@@ -627,7 +213,6 @@
             "name": "venus-rf-ptp-mars-60",
             "model": "GBE-LR",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.354118,
             "lon": -115.729045
@@ -636,7 +221,6 @@
             "name": "neocity-rf-1015-richard",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "disconnected",
             "lat": 33.34853,
             "lon": -115.726579
@@ -645,25 +229,14 @@
             "name": "neocity-rf-ce67",
             "model": "NBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.353053,
             "lon": -115.729931
         },
         {
-            "name": "mars-rf-262b",
-            "model": "NBE-5AC-Gen2",
-            "type": "airMax",
-            "site_id": null,
-            "state": "active",
-            "lat": 33.361942,
-            "lon": -115.713889
-        },
-        {
             "name": "venus-rf-sector-s",
             "model": "LAP-120",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.354118,
             "lon": -115.729045
@@ -672,7 +245,6 @@
             "name": "mars-rf-9e:5d-og",
             "model": "NBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.3632,
             "lon": -115.714805
@@ -681,7 +253,6 @@
             "name": "neocity-rf-06e9-compoundz",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.350559,
             "lon": -115.730425
@@ -690,7 +261,6 @@
             "name": "neocity-rf-7de1-wormhole",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.350066,
             "lon": -115.728881
@@ -699,25 +269,14 @@
             "name": "neocity-rf-19b8-electriclounge",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.352036,
             "lon": -115.729826
         },
         {
-            "name": "tao-rf-library-8:45",
-            "model": "NBE-5AC-Gen2",
-            "type": "airMax",
-            "site_id": null,
-            "state": "active",
-            "lat": 34.095,
-            "lon": -116.4799
-        },
-        {
             "name": "Kim's Rental",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.347313,
             "lon": -115.729562
@@ -726,7 +285,6 @@
             "name": "2115 - Vlad ",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.349913,
             "lon": -115.729329
@@ -735,7 +293,6 @@
             "name": "neocity-rf-kamartaj-05",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "disconnected",
             "lat": 33.353676,
             "lon": -115.72869
@@ -744,7 +301,6 @@
             "name": "Saturn",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.353,
             "lon": -115.732107
@@ -753,7 +309,6 @@
             "name": "neocity-rf-aa67-skullpony",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.350539,
             "lon": -115.729843
@@ -762,25 +317,14 @@
             "name": "neocity-rf-9e62-bbac",
             "model": "NBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.353174,
             "lon": -115.730525
         },
         {
-            "name": "mars-rf-tool-983a",
-            "model": "NBE-5AC-Gen2",
-            "type": "airMax",
-            "site_id": null,
-            "state": "active",
-            "lat": 33.363,
-            "lon": -115.7131
-        },
-        {
             "name": "neocity-rf-a4b2-hunky",
             "model": "Loco5AC",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.350833,
             "lon": -115.729321
@@ -789,34 +333,22 @@
             "name": "chowtower-rf-sector-n",
             "model": "LAP-GPS",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
-            "lat": 33.352336,
-            "lon": -115.731012
+            "lat": 33.352393,
+            "lon": -115.731029
         },
         {
             "name": "mars-rf-ptp-venus-60",
             "model": "GBE-LR",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.362751,
             "lon": -115.7152
         },
         {
-            "name": "mars-rf-sector-e",
-            "model": "LAP-120",
-            "type": "airMax",
-            "site_id": null,
-            "state": "active",
-            "lat": 33.361942,
-            "lon": -115.713889
-        },
-        {
             "name": "Pirates",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "disconnected",
             "lat": 33.350836,
             "lon": -115.729954
@@ -825,7 +357,6 @@
             "name": "neocity-rf-e6c2-ivan",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.351792,
             "lon": -115.729214
@@ -834,10 +365,16 @@
             "name": "chowtower-rf-ptp-venus-05",
             "model": "LBE-5AC-Gen2",
             "type": "airMax",
-            "site_id": null,
             "state": "active",
             "lat": 33.352337,
             "lon": -115.730971
         }
-    ]
+    ],
+    "map_metadata": {
+        "lat_min": 33.34651865,
+        "lat_max": 33.36399435,
+        "lon_min": -115.7346794,
+        "lon_max": -115.7138586,
+        "grid": "4x4"
+    }
 }
