@@ -30,8 +30,8 @@
             "model": "LAP-GPS",
             "type": "airMax",
             "state": "active",
-            "lat": 33.35229,
-            "lon": -115.73086
+            "lat": 33.35233,
+            "lon": -115.730875
         },
         {
             "name": "neocity-rf-20d2-kona",
@@ -64,6 +64,14 @@
             "state": "active",
             "lat": 33.351641,
             "lon": -115.728816
+        },
+        {
+            "name": "mars-rf-c7:72-freeside",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": 33.362188,
+            "lon": -115.7128
         },
         {
             "name": "venus-rf-sector-e",
@@ -150,8 +158,8 @@
             "model": "LAP-GPS",
             "type": "airMax",
             "state": "active",
-            "lat": 33.352214,
-            "lon": -115.731131
+            "lat": 33.352295,
+            "lon": -115.731016
         },
         {
             "name": "venus-rf-ptp-chowtower-05",
@@ -232,6 +240,14 @@
             "state": "active",
             "lat": 33.353053,
             "lon": -115.729931
+        },
+        {
+            "name": "mars-rf-262b - colab",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": 33.361978,
+            "lon": -115.712804
         },
         {
             "name": "venus-rf-sector-s",
@@ -322,6 +338,14 @@
             "lon": -115.730525
         },
         {
+            "name": "mars-rf-tool-983a",
+            "model": "NBE-5AC-Gen2",
+            "type": "airMax",
+            "state": "active",
+            "lat": 33.363,
+            "lon": -115.7131
+        },
+        {
             "name": "neocity-rf-a4b2-hunky",
             "model": "Loco5AC",
             "type": "airMax",
@@ -334,8 +358,8 @@
             "model": "LAP-GPS",
             "type": "airMax",
             "state": "active",
-            "lat": 33.352393,
-            "lon": -115.731029
+            "lat": 33.352345,
+            "lon": -115.730975
         },
         {
             "name": "mars-rf-ptp-venus-60",
@@ -344,6 +368,14 @@
             "state": "active",
             "lat": 33.362751,
             "lon": -115.7152
+        },
+        {
+            "name": "mars-rf-sector-e",
+            "model": "LAP-120",
+            "type": "airMax",
+            "state": "active",
+            "lat": 33.361942,
+            "lon": -115.713889
         },
         {
             "name": "Pirates",
@@ -373,8 +405,8 @@
     "map_metadata": {
         "lat_min": 33.34651865,
         "lat_max": 33.36399435,
-        "lon_min": -115.7346794,
-        "lon_max": -115.7138586,
+        "lon_min": -115.73477965000001,
+        "lon_max": -115.71175335,
         "grid": "4x4"
     }
 }

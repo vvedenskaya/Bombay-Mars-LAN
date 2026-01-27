@@ -8,6 +8,8 @@ ENV/
 env/
 build/
 dist/
+Backup/
+offline-maps/
 
 # Project Specific Data
 unifi_data.json
